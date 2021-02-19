@@ -1,0 +1,74 @@
+$btn: #f42d2d;
+$text: #303030;
+
+%montserrat-700 {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+%poppins-700 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+%poppins-500 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+%poppins-400 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+%poppins-600 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+%sourcesans-400 {
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+}
+
+%sourcesans-600 {
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+}
+
+%btn {
+  padding: 26px 90px 25px 45px;
+  background-color: $btn;
+  border-radius: 50px;
+  color: #fff;
+  @extend %montserrat-700;
+  text-transform: uppercase;
+  line-height: 19px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    background-image: url("../images/icons/arrow-right.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 21px;
+    top: 23px;
+    right: 50px;
+  }
+  &:hover {
+    &::after {
+      animation: mooving 1s infinite;
+      @keyframes mooving {
+        0% {
+          transform: translateX(0px);
+        }
+        50% {
+          transform: translateX(10px);
+        }
+        100% {
+          transform: translateX(0px);
+        }
+      }
+    }
+  }
+}
