@@ -1,0 +1,16 @@
+body {
+  color: $text;
+  @extend %poppins-700;
+  line-height: 30px;
+}
+
+.container {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+.title {
+  @extend %montserrat-700;
+  font-size: 48px;
+  line-height: 59px;
+}

@@ -15,7 +15,7 @@ function browsersync() {
       baseDir: 'app/'
     },
     notify: false,
-    browser: 'firefox'
+    browser: 'microsoft-edge'
   });
 }
 
