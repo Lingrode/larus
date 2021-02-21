@@ -2,6 +2,11 @@ body {
   color: $text;
   @extend %poppins-700;
   line-height: 30px;
+  // position: relative;
+}
+
+body.lock {
+  overflow: hidden;
 }
 
 .container {
