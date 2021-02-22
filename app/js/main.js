@@ -1,4 +1,37 @@
 $(function () {
+
+  $('.header-nav__btn').on('click', function () {
+    $(this).toggleClass('header-nav__btn--active');
+  });
+
+  $('.header-nav__btn, .menu a').on('click', function () {
+    $('.header-nav__inner').toggleClass('header-nav__inner--active');
+  })
+
+
+  window.onclick = function (e) {
+    if (!e.target.matches('.header-nav__btn')) {
+      var dropdownbtn = document.getElementsByClassName("header-nav__btn");
+      var dropdownmenu = document.getElementsByClassName("header-nav__inner");
+      var i;
+      for (i = 0; i < dropdownmenu.length; i++) {
+        var openDropdown = dropdownmenu[i];
+        if (openDropdown.classList.contains('header-nav__inner--active')) {
+          openDropdown.classList.remove('header-nav__inner--active');
+        }
+      }
+      for (i = 0; i < dropdownbtn.length; i++) {
+        var openDropdown = dropdownbtn[i];
+        if (openDropdown.classList.contains('header-nav__btn--active')) {
+          openDropdown.classList.remove('header-nav__btn--active');
+        }
+      }
+    }
+  };
+
+
+
+
   const animItems = document.querySelectorAll('._anim-items');
 
   if (animItems.length > 0) {
@@ -164,7 +197,7 @@ $(function () {
   let header = $('.header-nav');
   let hederHeight = header.height(); // вычисляем высоту шапки
 
-  $(window).scroll(function () {
+  window.addEventListener('scroll', function () {
     if ($(this).scrollTop() > 1) {
       header.addClass('header_fixed');
       $('body').css({
