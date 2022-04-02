@@ -1,17 +1,28 @@
 $(function () {
 
+
+  $('.header-nav__btn, .menu a').on('click', function () {
+    $('.header-nav__inner').toggleClass('header-nav__inner--active');
+    // $('body').toggleClass('lock');
+  });
+
   $('.header-nav__btn').on('click', function () {
     $(this).toggleClass('header-nav__btn--active');
   });
 
-  $('.header-nav__btn, .menu a').on('click', function () {
-    $('.header-nav__inner').toggleClass('header-nav__inner--active');
-  })
-
+  $(".header-nav__menu-link, .footer__contacts-link").on("click", function (event) {
+    event.preventDefault();
+    var id = $(this).attr('href'),
+      top = $(id).offset().top;
+    $('body, html').animate({ scrollTop: top }, 1200);
+    event.preventDefault();
+    $('.header-nav__menu-link').removeClass('header-nav__menu-item--active');
+    $(this).addClass('header-nav__menu-item--active');
+  });
 
   window.onclick = function (e) {
     if (!e.target.matches('.header-nav__btn')) {
-      var dropdownbtn = document.getElementsByClassName("header-nav__btn");
+      let dropdownbtn = document.getElementsByClassName("header-nav__btn");
       var dropdownmenu = document.getElementsByClassName("header-nav__inner");
       var i;
       for (i = 0; i < dropdownmenu.length; i++) {
@@ -66,7 +77,7 @@ $(function () {
 
     setTimeout(() => {
       animOnScroll();
-    }, 300)
+    }, 300);
   }
 
 
@@ -88,7 +99,7 @@ $(function () {
         const currentPopup = document.getElementById(popupName);
         popupOpen(currentPopup);
         e.preventDefault();
-      })
+      });
     }
   }
 
@@ -99,7 +110,7 @@ $(function () {
       el.addEventListener('click', function (e) {
         popupClose(el.closest('.popup'));
         e.preventDefault();
-      })
+      });
     }
   }
 
@@ -145,7 +156,7 @@ $(function () {
     unlock = false;
     setTimeout(function () {
       unlock = true;
-    }, timeout)
+    }, timeout);
   }
 
   function bodyUnLock() {
@@ -207,7 +218,42 @@ $(function () {
       header.removeClass('header_fixed');
       $('body').css({
         'paddingTop': 0 // удаляю отступ у body, равный высоте шапки
-      })
+      });
     }
   });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('form');
+  form.addEventListener('submit', formSend);
+
+  async function formSend(e) {
+    e.preventDefault();
+
+    let error = formValidate(form);
+  }
+
+  function formValidate(form) {
+    let error = 0;
+    let formReq = querySelectorAll('._req');
+
+    for (let index = 0; index < formReq.length; index++) {
+      const input = formReq[index];
+      formRemoveError(input);
+
+      if (input.value === '') {
+        formAddError(input);
+        error++;
+      }
+    }
+  }
+
+  function formAddError(input) {
+    input.parentElement.classList.add('_error');
+    input.classList.add('_error');
+  }
+  function formRemoveError(input) {
+    input.parentElement.classList.remove('_error');
+    input.classList.remove('_error');
+  }
 });
